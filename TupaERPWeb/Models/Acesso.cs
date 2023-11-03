@@ -6,7 +6,7 @@ namespace TupaERPWeb.Models
     public class Acesso
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Display(Name = "ID")]
+        [Display(Name = "Id")]
         [Column("ID")]
         public int Id { get; set; }
 

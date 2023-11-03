@@ -7,7 +7,7 @@ namespace TupaERPWeb.Models
     public class Tabela
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Display(Name = "ID")]
+        [Display(Name = "Id")]
         [Column("ID")]
         public int Id { get; set; }
 
