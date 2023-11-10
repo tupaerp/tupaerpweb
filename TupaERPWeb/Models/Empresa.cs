@@ -134,7 +134,7 @@ namespace TupaERPWeb.Models
         [Required(ErrorMessage = "O campo CONDIÇÃO é obrigatório.")]
         [ForeignKey("Condicao")]
         [Column("CONDICAO_ID")]
-        public required int CondicaoEmp { get; set; }
+        public required int CondicaoEmp5 { get; set; }
 
 
 
