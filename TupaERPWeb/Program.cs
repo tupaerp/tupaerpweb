@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 
-builder.Services.AddScoped<PerfilInterface, PerfilRepository>(); //Repositorios de Perfis
+builder.Services.AddScoped<IPerfilRepository, PerfilRepository>(); //Repositorios de Perfis
 
 
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Diagnostics;
 using TupaERPWeb.Data;
 using TupaERPWeb.Interfaces;
@@ -6,52 +7,61 @@ using TupaERPWeb.Models;
 
 namespace TupaERPWeb.Repository
 {
-    public class PerfilRepository : PerfilInterface
+    public class PerfilRepository : IPerfilRepository
     {
         //contexto do banco de dados
-        private readonly TupaERPDbContext db;
+        private readonly TupaERPDbContext _db;
 
-        public PerfilRepository(TupaERPDbContext context)
+        public PerfilRepository(TupaERPDbContext db)
         {
-            db = context;
-        }
-        public bool Add(Perfil perfil)
-        {
-            db.Add(perfil);
-            return Save();
+            _db = db;
         }
 
-        public bool Delete(Perfil perfil)
+        public bool Adicionar(Perfil perfil)
         {
-            db.Remove(perfil);
-            return Save();
+            _db.Add(perfil);
+            return Salvar();
         }
 
-        public async Task<IEnumerable<Perfil>> GetAll()
+        public bool Atualizar(Perfil perfil)
         {
-            return await db.Perfis.ToListAsync();
-        }
-
-        public async Task<Perfil> GetByIdAsync(int id)
-        {
-            return await db.Perfis.FirstOrDefaultAsync(i => i.Id == id);
-        }
-
-        public async Task<IEnumerable<Perfil>> GetRaceByDesc(string desc)
-        {
-            return await db.Perfis.Where(c => c.Descricao.Contains(desc)).ToListAsync();
+            perfil.Data_Alt = DateTime.Now;
+            _db.Update(perfil);
+            return Salvar();
 
         }
 
-        public bool Save()
+        public async Task<(List<Perfil>? Perfis, int QtdTotalItens)> ObterPerfis(string descricao, string ordenarPor, string tipoOrdenacao, int paginaAtual, int qtdItensPagina)
         {
-            var saved = db.SaveChanges();
-            return saved > 0 ? true : false;
+            IQueryable<Perfil> query = _db.Perfis.AsNoTracking();
+
+            if (!string.IsNullOrEmpty(descricao)) 
+            { 
+               query = query.Where(p => p.Descricao.Contains(descricao));
+            }
+            int qtdTotalItens = await query.CountAsync();
+
+            var lista = await query.OrderBy(p => p.Descricao).Skip(paginaAtual * qtdItensPagina).Take(qtdItensPagina).ToListAsync();
+
+            return (lista, qtdTotalItens);
+
         }
 
-        public bool Update(Perfil perfil)
+        public async Task<Perfil?> ObterPorId(long id)
         {
-            throw new NotImplementedException();
+            return await _db.Perfis.FirstOrDefaultAsync(i => i.Id == id);
+        }
+
+        public bool Remover(Perfil perfil)
+        {
+            _db.Remove(perfil);
+            return Salvar();
+        }
+
+        public bool Salvar()
+        {
+            var salvo = _db.SaveChanges();
+            return salvo > 0;
         }
     }
 }
