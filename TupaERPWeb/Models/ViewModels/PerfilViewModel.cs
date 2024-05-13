@@ -22,8 +22,7 @@ namespace TupaERPWeb.Models.ViewModels
 
 		public sbyte Status { get; set; }
 
-
-		
+				
 		[Required(ErrorMessage = "O campo DESCRIÇÁO é obrigatório.")]
 		public required string Descricao { get; set; }
 
@@ -36,10 +35,8 @@ namespace TupaERPWeb.Models.ViewModels
 			get { return Data_Cad?.ToShortDateString(); }
 		}
 
-
 		[DisplayFormat(DataFormatString = "{MM/dd/yyyy}")]
 		public DateTime? Data_Alt { get; set; }
-
 
 		[Display(Name = "Alteração")]
 		public string? DataAlt
