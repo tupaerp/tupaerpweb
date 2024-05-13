@@ -3,8 +3,8 @@
         <tr>
             <th scope="col">Id</th>
             <th scope="col">Descricao</th>
-            <th scope="col">Status</th>
-            <th scope="col">Ações</th>
+            <th class="text-center" scope="col">Status</th>
+            <th  class="text-center" scope="col">Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -13,17 +13,26 @@
         <tr>
             <td>@item.Id</td>
             <td>@item.Descricao</td>
-            <td>@item.Status</td>
+               
+                @if(item.Status == 0)
+                {
+                    <td class="text-center"><i class="fs-4 fa-duotone fa-face-weary"></i></td>
+                }
+                else
+                {
+                    <td class="text-center"><i class="fs-4 fa-duotone fa-face-smile"></i></td>
+                }
+              
 
 
             <td class="prn-border-table" style="text-align: center;">
-                <button data-toggle="tooltip" data-placement="left" data-title="Alterar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarEdit(@item.Id,false)"><i class="prn-font-icones fas fa-edit p-1"></i></button>
+                    <button data-toggle="tooltip" data-placement="left" data-title="Alterar Registro" class="btn btn-outline-primary  border-0" data-value="@item.Id" onclick="chamarEdit(@item.Id,false)"><i class="fs-4 fa-duotone fa-pen-to-square"></i></button>
 
 
-                <button data-toggle="tooltip" data-placement="left" data-title="Visualizar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDetails(@item.Id,false)"><i class="prn-font-icones fas fa-eye p-1"></i> </button>
+                    <button data-toggle="tooltip" data-placement="left" data-title="Visualizar Registro"  class="btn btn-outline-success border-0" data-value="@item.Id" onclick="chamarDetails(@item.Id,false)"><i class="fs-4 fa-duotone fa-eye"></i> </button>
 
 
-                <button data-toggle="tooltip" data-placement="left" data-title="Apagar Registro" style="border:none;" class="prn-button-sem" data-value="@item.Id" onclick="chamarDelete(@item.Id,false)"><i class="prn-font-icones fas fa-trash-alt p-1"></i> </button>
+                    <button data-toggle="tooltip" data-placement="left" data-title="Apagar Registro"  class="btn btnDelete btn-outline-danger border-0" data-value="@item.Id" onclick="chamarDelete(@item.Id,false)"><i class="fs-4 fa-duotone fa-trash-can"></i> </button>
 
 
             </td>

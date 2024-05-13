@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TupaERPWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+909169a41ac2c2d7092f8d03a8e88145898daff5")]
 [assembly: System.Reflection.AssemblyProductAttribute("TupaERPWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TupaERPWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
