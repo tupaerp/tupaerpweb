@@ -12,6 +12,7 @@ namespace TupaERPWeb.Models.ViewModels
 
 		}
 		public string? Descricao { get; set; }
+		public sbyte Status { get; set; }
 		public List<PerfilViewModel>? Perfis { get; set; }
 	}
 
